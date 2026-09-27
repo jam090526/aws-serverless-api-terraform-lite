@@ -1,0 +1,16 @@
+node_modules/
+dist/
+coverage/
+*.js
+!jest.config.js
+*.d.ts
+.env
+.DS_Store
+publish.sh
+
+# Terraform (state is local in the lite version; never commit it)
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfplan
+crash.log

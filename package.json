@@ -1,0 +1,33 @@
+{
+  "name": "aws-serverless-api-lite-terraform",
+  "version": "1.0.0",
+  "description": "Free Terraform starter: API Gateway + Lambda (Node.js 24, TypeScript) with validation, structured logging, tracing and tests.",
+  "private": true,
+  "license": "MIT",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "build": "tsc --noEmit",
+    "test": "jest",
+    "test:infra": "terraform -chdir=infra init -backend=false -input=false && terraform -chdir=infra test",
+    "bundle": "node scripts/bundle.mjs",
+    "plan": "npm run bundle && terraform -chdir=infra init -input=false && terraform -chdir=infra plan",
+    "deploy": "npm run bundle && terraform -chdir=infra init -input=false && terraform -chdir=infra apply -auto-approve",
+    "destroy": "npm run bundle && terraform -chdir=infra init -input=false && terraform -chdir=infra destroy",
+    "fmt": "terraform fmt -recursive infra"
+  },
+  "dependencies": {
+    "@aws-lambda-powertools/logger": "^2.10.0",
+    "zod": "^3.24.0"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.145",
+    "@types/jest": "^29.5.14",
+    "@types/node": "^24.0.0",
+    "esbuild": "^0.25.0",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.2.5",
+    "typescript": "^5.6.3"
+  }
+}
